@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+var contactosController = require('../controllers/contactosController');
+
+/* GET home page: muestra la lista de contactos */
+router.get('/', contactosController.listar);
 
 module.exports = router;
