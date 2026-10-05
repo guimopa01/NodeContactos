@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prestart": "node ./config/prismaDbPush.js",
+    "db:push": "node ./config/prismaDbPush.js",
+    "db:generate": "node ./config/prismaDbPush.js generate",
+    "studio": "node ./config/prismaDbPush.js studio",
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.0",
     "bcryptjs": "^3.0.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -15,6 +20,6 @@
     "express-session": "^1.19.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "pg": "^8.11.5"
+    "prisma": "^6.19.0"
   }
 }

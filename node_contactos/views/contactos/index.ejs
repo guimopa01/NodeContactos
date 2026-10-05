@@ -189,7 +189,7 @@
           <span>Hola, <strong><%= user.nombre %></strong></span>
         </div>
         <div style="display: flex; gap: 0.5rem; align-items: center;">
-          <a href="/" class="btn-logout" style="background-color: rgba(255, 255, 255, 0.08); border-color: var(--border); color: var(--text);">🏠 Inicio</a>
+          <a href="/" class="btn-logout" style="background-color: rgba(255, 255, 255, 0.08); border-color: var(--border); color: var(--text);">🏠 Agenda</a>
           <a href="/auth/logout" class="btn-logout">🚪 Cerrar Sesión</a>
         </div>
 
@@ -212,7 +212,7 @@
               <th>Teléfono</th>
               <th>Email</th>
               <th>Provincia</th>
-              <th>Acciones</th>
+              <th>Detalle</th>
             </tr>
           </thead>
           <tbody>
@@ -224,10 +224,7 @@
                 <td><%= c.email || '-' %></td>
                 <td><span class="badge"><%= c.provincia || 'Sin asignar' %></span></td>
                 <td class="actions">
-                  <a href="/contactos/editar/<%= c.id %>" class="btn btn-edit">Editar</a>
-                  <form action="/contactos/eliminar/<%= c.id %>" method="POST" style="display:inline;" onsubmit="return confirm('¿Seguro que deseas eliminar a este contacto?');">
-                    <button type="submit" class="btn btn-delete">Eliminar</button>
-                  </form>
+                  <a href="/contactos/<%= c.id %>" class="btn btn-edit">Ver más</a>
                 </td>
               </tr>
             <% }); %>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - NodeContactos</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+      --primary: #4f46e5;
+      --danger: #dc2626;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      background: radial-gradient(circle at top, #1e1b4b, var(--bg) 70%);
+      color: var(--text);
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    main {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--card);
+    }
+    h1 { margin-top: 0; }
+    .field { margin: 1rem 0; }
+    label { display: block; margin-bottom: 0.4rem; color: var(--muted); }
+    input, select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    .button {
+      display: inline-block;
+      padding: 0.75rem 1rem;
+      border: 0;
+      border-radius: 0.5rem;
+      background: var(--primary);
+      color: white;
+      font: inherit;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .button.secondary { background: transparent; border: 1px solid var(--border); }
+    .button.danger { background: var(--danger); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Detalle del contacto</h1>
+    <form action="/contactos/editar/<%= contacto.id %>" method="POST">
+      <div class="field">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" value="<%= contacto.nombre %>" required>
+      </div>
+      <div class="field">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" name="telefono" value="<%= contacto.telefono || '' %>">
+      </div>
+      <div class="field">
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" value="<%= contacto.email || '' %>">
+      </div>
+      <div class="field">
+        <label for="provincia_id">Provincia</label>
+        <select id="provincia_id" name="provincia_id" required>
+          <% provincias.forEach(provincia => { %>
+            <option value="<%= provincia.id %>" <%= String(contacto.provincia_id) === String(provincia.id) ? 'selected' : '' %>>
+              <%= provincia.nombre %>
+            </option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="actions">
+        <a class="button secondary" href="/">Volver a la agenda</a>
+        <button class="button" type="submit">Guardar cambios</button>
+        <button class="button danger" type="submit" form="eliminar-contacto">Eliminar contacto</button>
+      </div>
+    </form>
+    <form id="eliminar-contacto" action="/contactos/eliminar/<%= contacto.id %>" method="POST"
+      onsubmit="return confirm('¿Seguro que deseas eliminar este contacto?');"></form>
+  </main>
+</body>
+</html>

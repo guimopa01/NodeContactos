@@ -25,9 +25,14 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+app.locals.dbReady.then(function() {
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+}).catch(function(error) {
+  console.error('❌ No se pudo iniciar la aplicación:', error.message);
+  process.exit(1);
+});
 
 /**
  * Normalize a port into a number, string, or false.

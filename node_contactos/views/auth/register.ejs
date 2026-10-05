@@ -105,7 +105,7 @@
       color: var(--text-muted);
     }
 
-    input {
+    input, select {
       width: 100%;
       padding: 0.875rem 1rem;
       border-radius: 0.625rem;
@@ -116,7 +116,7 @@
       transition: all 0.2s ease;
     }
 
-    input:focus {
+    input:focus, select:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 4px var(--primary-glow);
@@ -199,6 +199,18 @@
         <div class="form-group">
           <label for="email">Correo Electrónico</label>
           <input type="email" id="email" name="email" value="<%= formData && formData.email ? formData.email : '' %>" required placeholder="tu.correo@ejemplo.com">
+        </div>
+
+        <div class="form-group">
+          <label for="provincia_id">Provincia</label>
+          <select id="provincia_id" name="provincia_id" required>
+            <option value="">-- Seleccionar Provincia --</option>
+            <% provincias.forEach(provincia => { %>
+              <option value="<%= provincia.id %>" <%= formData && String(formData.provincia_id) === String(provincia.id) ? 'selected' : '' %>>
+                <%= provincia.nombre %>
+              </option>
+            <% }); %>
+          </select>
         </div>
 
         <div class="form-group">

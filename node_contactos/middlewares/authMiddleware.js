@@ -13,7 +13,7 @@ function requireAuth(req, res, next) {
 
 function guestOnly(req, res, next) {
   if (req.session && req.session.user) {
-    return res.redirect('/contactos');
+    return res.redirect('/');
   }
   next();
 }

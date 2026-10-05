@@ -129,11 +129,11 @@
       </div>
 
       <div class="form-group">
-        <label for="provincia_id">Provincia (Relación 1:N)</label>
-        <select id="provincia_id" name="provincia_id">
+        <label for="provincia_id">Provincia *</label>
+        <select id="provincia_id" name="provincia_id" required>
           <option value="">-- Seleccionar Provincia --</option>
           <% provincias.forEach(p => { %>
-            <option value="<%= p.id %>" <%= contacto && contacto.provincia_id === p.id ? 'selected' : '' %>>
+            <option value="<%= p.id %>" <%= contacto && String(contacto.provincia_id) === String(p.id) ? 'selected' : '' %>>
               <%= p.nombre %>
             </option>
           <% }); %>

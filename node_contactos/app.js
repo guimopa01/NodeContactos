@@ -15,10 +15,10 @@ var authRouter = require('./routes/auth');
 var { requireAuth } = require('./middlewares/authMiddleware');
 var initDb = require('./config/initDb');
 
-// Inicializar tablas en PostgreSQL al arrancar la aplicación
-initDb();
-
 var app = express();
+
+// El servidor espera a que PostgreSQL y las tablas estén listas antes de arrancar.
+app.locals.dbReady = initDb();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

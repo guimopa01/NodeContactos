@@ -14,5 +14,6 @@ router.delete('/:id', contactosController.eliminar);
 
 // Ruta para obtener la lista de provincias
 router.get('/provincias', contactosController.listarProvincias);
+router.get('/:id', contactosController.detalle);
 
 module.exports = router;
