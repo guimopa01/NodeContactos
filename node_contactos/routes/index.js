@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var contactosController = require('../controllers/contactosController');
-
-/* GET home page: muestra la lista de contactos */
-router.get('/', contactosController.listar);
+/* GET home page: Muestra la pantalla de inicio con opciones de Iniciar Sesión y Registro */
+router.get('/', function(req, res) {
+  res.render('index', { title: 'NodeContactos - Inicio' });
+});
 
 module.exports = router;
+
+

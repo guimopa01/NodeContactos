@@ -22,7 +22,17 @@ async function initDb() {
       );
     `);
 
-    // 3. Insertar algunas provincias por defecto si la tabla está vacía
+    // 3. Crear tabla de usuarios
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS usuarios (
+        id SERIAL PRIMARY KEY,
+        nombre VARCHAR(100) NOT NULL,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
     const resProvincias = await pool.query('SELECT COUNT(*) FROM provincias');
     if (parseInt(resProvincias.rows[0].count, 10) === 0) {
       await pool.query(`
