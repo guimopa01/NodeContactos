@@ -2,5 +2,8 @@
   "scripts": {
     "start": "npm --prefix node_contactos start",
     "studio": "npm --prefix node_contactos run studio"
+  },
+  "dependencies": {
+    "20": "^3.1.9"
   }
 }
