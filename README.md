@@ -91,4 +91,4 @@ npm run studio       # Abre prisma en el puerto 5555
 
 ## Enlace 
 
-[IA utilizada](/workspaces/NodeContactos/IA.md)
+[IA utilizada](./IA.md)
